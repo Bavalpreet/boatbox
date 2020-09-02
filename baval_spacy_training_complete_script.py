@@ -6,8 +6,8 @@ import json
 final=[]
 #boatbox2
            
-
-with open('/home/bavalpreet/Documents/spacy-ner-annotator-master/25augfile.json1') as f:
+#READING DATA FROM THE JSON FILE
+with open('/home/bavalpreet/Documents/spacy-ner-annotator-master/data_count/2septfile.json1') as f:
     b=[line.split('\n', 1) for line in f]
     for i in range(len(b)):
     	try:
@@ -28,7 +28,7 @@ with open('/home/bavalpreet/Documents/spacy-ner-annotator-master/25augfile.json1
     		continue
 
 
-
+# #selecting 20% of data
 count_of_test_data = int((len(final)*20)/100)
 # print(m)
 
@@ -38,6 +38,7 @@ m = random.choices(final, k=count_of_test_data)
 print(len(m))
 print(len(final))
 
+# REMOVING TEST DATA FROM THE FINAL LIST
 for j in m:
     for i in range(0,len(final)):
         try:
@@ -49,16 +50,18 @@ for j in m:
                 continue
         except:
             continue
-# [i for i, j in zip(m, final) if i == j]
 
-print(len(final))
+# NOW CHECKING WEATHER THE LENGTH OF FINAL IS REDUCED AND LENGTH OF TEST DATA
+print("Length of train data",len(final), "Length of test data",len(m))
+
+# VERIFYING THE INPUT FORMAT OF DATA
 print(m[:2])
 
 # saving the test data in the pickle file
-with open('testdata', 'wb') as fp:
+with open('testdata2sept', 'wb') as fp:
     pickle.dump(m, fp)
 
 finalbox2 = final[:]
 print(len(final))
-with open("/home/bavalpreet/Desktop/pickleinput_to_spacy/spacy_input_box3.data", "wb") as fp:
+with open("/home/bavalpreet/Desktop/pickleinput_to_spacy/spacy_input_box2sept.data", "wb") as fp:
 	pickle.dump(finalbox2, fp)
